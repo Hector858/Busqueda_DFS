@@ -42,19 +42,25 @@ class Grafo:
     __init__(self, numero_de_nodos, dirigido=Treu):
         Constructor de la clase Grafo
         
-        Crea el diccionario de la lista de adyacencia seteando cada nodo.
+        Crea el diccionario de la lista de adyacencia seteando cada nodo.    
     añadir_arista(self, nodo1, nodo2, peso):
         Método que agrega una arista al grafo.
         
-        Si el primer grafo no se encuentra dirigido se pasa al siguiente
+        Si el primer grafo no se encuentra dirigido se pasa al siguiente  
     imprimir_lista_adyacencia(self):
         Método que imprime la lista de adyacencia.
         
-        Imprime la lista de adyacencia de los nodos por cada una de sus llaves.
+        Imprime la lista de adyacencia de los nodos por cada una de sus llaves.   
     dfs(self, inicial, objetivo, camino = [], visitado = set()):
         Método que realiza un recorrido del grafo por profundidad
         
-        Realiza un proceso recursivo para volver a preguntar si es igual al objetivo
+        Realiza un proceso recursivo para volver a preguntar si es igual al objetivo 
+    Main
+    -------- 
+    __main__
+        Main de la clase Grafo
+        
+        Imprime los nodos nodos asignados y muestra el camino recorrido
     """
     # Constructor
     def __init__(self, numero_de_nodos, dirigido=True):#self es uno mismo
@@ -168,7 +174,37 @@ class Grafo:
                 if resultado is not None:
                     #retorna el par ordenado
                     return resultado
-        #Elimina y retorna un item de la lista
+        #Elimina y retorna un elemento de la lista de camino
         camino.pop()
-        #indica que no hay valores que retornar
+        #indica que no hay valor posible que devolver
         return None
+    
+if __name__ == "__main__":
+    '''
+        Main de la clase Grafo.
+        
+        Imprime los nodos nodos asignados y muestra el camino recorrido
+        
+    '''
+        
+    # Crea una instancia de la clase "Grafo"
+    # Este grafo es no dirigido y tiene 5 nodos
+    g = Grafo(5, dirigido=False)
+    
+    # Agrega las aristas del grafo
+    g.agregar_arista(0,1)# Agrega la arista (0,1) con peso=1
+    g.agregar_arista(0,2)# Agrega la arista (0,2) con peso=1
+    g.agregar_arista(1,2)# Agrega la arista (1,2) con peso=1
+    g.agregar_arista(1,4)# Agrega la arista (1,4) con peso=1
+    g.agregar_arista(2,3)# Agrega la arista (2,3) con peso=1
+    
+    # Imprime la lista de adyacencia en el formulario del nodo
+    g.imprimir_lista_adyacencia()
+    
+    #lista vacía del camino del recorrido
+    camino_recorrido = []
+    #Se intancia el camino del recorrido
+    #desde el nodo 0 al nodo 3
+    camino_recorrido = Grafo.dfs(0, 3)
+    #Imprime el camino del recorrido
+    print(f" El camino del recorrido del nodo 0 al nodo 3 es {camino_recorrido}")
