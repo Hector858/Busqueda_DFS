@@ -3,7 +3,7 @@ from queue import Queue
 
 class Grafo:
     """
-    Una clase que representa el algoritmo de búsqueda por amplitud
+    Una clase que representa el algoritmo de búsqueda por profundidad
 
     ...
 
@@ -23,6 +23,19 @@ class Grafo:
             Este atributo puede tener un valor opcional (proporcionado por uno mismo)
     nodo_inicio : int  
             Nodo inicial del recorrido
+    inicial : int 
+            Nodo 1 o de inicio
+    objetivo : int
+            Nodo 2 o de fin
+    visitado: list
+            Conjunto vacío de nodos visitados
+    camino : list
+            Lista vacia
+    Returns:
+            camino : list
+                Lista del camino recorrido
+            resultado: list
+                resultado del par ordenado
             
     Métodos
     -------
@@ -38,6 +51,10 @@ class Grafo:
         Método que imprime la lista de adyacencia.
         
         Imprime la lista de adyacencia de los nodos por cada una de sus llaves.
+    dfs(self, inicial, objetivo, camino = [], visitado = set()):
+        Método que realiza un recorrido del grafo por profundidad
+        
+        Realiza un proceso recursivo para volver a preguntar si es igual al objetivo
     """
     # Constructor
     def __init__(self, numero_de_nodos, dirigido=True):#self es uno mismo
@@ -106,3 +123,52 @@ class Grafo:
             #Imprime cada uno de los nodos que se encuentren en la lista de adyacencia
             #colocan donde se dirigen los nodos y su peso
             print("nodo", llave, ": ", self.m_lista_adyacencia[llave])
+    #Función que realiza el recorrido DFS
+    def dfs(self, inicial, objetivo, camino = [], visitado = set()):
+        '''
+        Método que realiza un recorrido del grafo por profundidad
+        
+        Retorna el par ordenado
+        
+        Realiza un proceso recursivo para volver a preguntar si es igual al objetivo
+        
+            Parámetros:
+            ----------
+            inicial : int 
+                    Nodo 1 o de inicio
+            objetivo : int
+                    Nodo 2 o de fin
+            visitado: list
+                    Conjunto vacío de nodos visitados
+            camino : list
+                    Lista vacia
+            Returns:
+                camino : list
+                    Lista del camino recorrido
+                resultado: list
+                    resultado del par ordenado
+                
+        '''
+        #Agrega el item del nodo inicial a la lista del camino
+        camino.append(inicial)
+        #Agrega el nodo inicial al lista de visitado
+        visitado.add(inicial)
+        #Si el inicial es igual al objetivo se acaba la ejecución
+        #porque no tiene que recorrer más
+        if inicial == objetivo:
+            #Se retorna la lista del camino
+            return camino
+        #recorre el nodo vecino del inicio de lista de adyacencia
+        for (vecino, peso) in self.m_lista_adyacencia[inicial]:
+            #indica si el nodo vecino no ha sido visitado
+            if vecino not in visitado:
+                #Se realiza un proceso recursivo para preguntar si es igual al objetivo
+                resultado = self.dfs(vecino, objetivo, camino, visitado)
+                #Si es resultado no es ninguna
+                if resultado is not None:
+                    #retorna el par ordenado
+                    return resultado
+        #Elimina y retorna un item de la lista
+        camino.pop()
+        #indica que no hay valores que retornar
+        return None
