@@ -43,7 +43,7 @@ class Grafo:
         Constructor de la clase Grafo
         
         Crea el diccionario de la lista de adyacencia seteando cada nodo.    
-    añadir_arista(self, nodo1, nodo2, peso):
+    agregar_arista(self, nodo1, nodo2, peso):
         Método que agrega una arista al grafo.
         
         Si el primer grafo no se encuentra dirigido se pasa al siguiente  
@@ -112,7 +112,7 @@ class Grafo:
         #Agregar una arista del nodo 1 a la lista de adyacencia
         self.m_lista_adyacencia[nodo1].add((nodo2, peso))
         
-        #Si el grafo no esta dirigido se agrega la arista al otro nodo
+        #Si el nodo no esta dirigido se agrega la arista al otro nodo
         if not self.m_dirigido:
             #Agregar una arista del nodo 2 de la lista de adyacencia
             self.m_lista_adyacencia[nodo2].add((nodo1, peso))  
