@@ -194,9 +194,9 @@ if __name__ == "__main__":
     # Agrega las aristas del grafo
     g.agregar_arista(0,1)# Agrega la arista (0,1) con peso=1
     g.agregar_arista(0,2)# Agrega la arista (0,2) con peso=1
-    g.agregar_arista(1,2)# Agrega la arista (1,2) con peso=1
-    g.agregar_arista(1,4)# Agrega la arista (1,4) con peso=1
-    g.agregar_arista(2,3)# Agrega la arista (2,3) con peso=1
+    g.agregar_arista(1,3)# Agrega la arista (1,2) con peso=1
+    g.agregar_arista(2,3)# Agrega la arista (1,4) con peso=1
+    g.agregar_arista(3,4)# Agrega la arista (2,3) con peso=1
     
     # Imprime la lista de adyacencia en el formulario del nodo
     g.imprimir_lista_adyacencia()
@@ -205,6 +205,6 @@ if __name__ == "__main__":
     camino_recorrido = []
     #Se intancia el camino del recorrido
     #desde el nodo 0 al nodo 3
-    camino_recorrido = Grafo.dfs(0, 3)
+    camino_recorrido = g.dfs(0, 3)
     #Imprime el camino del recorrido
     print(f" El camino del recorrido del nodo 0 al nodo 3 es {camino_recorrido}")
